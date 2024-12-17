@@ -14,7 +14,25 @@ function InputSample() {
 
     const onChange = (e) => {
         const {value, name} = e.target; //우선 e.target에서 name, value를 추출출
-    }
+   
+        //주의!! inputs[name] = value; 리액트에서 이런식으로 수정하면 절대 안됨!
+        
+        //그렇다면? 새로운 객체를 만들어서 새로운 객체에 변화를 주고, 이를 상태로 사용
+        setInputs({
+            ...inputs, //(스프레드 문법 : 불변성을 지킨다)기존의 input 객체를 복사한 뒤
+            [name]:value //name 키를 가진 값을 value로 설정정
+        });
+
+        
+    };
+
+    const onReset = () => {
+        setInputs({
+          name: '',
+          nickname: '',
+        })
+      };
+    
 
   // http://localhost:3000/InputExam1
   return (
