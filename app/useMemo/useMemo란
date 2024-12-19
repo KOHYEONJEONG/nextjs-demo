@@ -1,0 +1,32 @@
+https://react.vlpt.us/basic/17-useMemo.html
+
+# 선언
+import React, {useMemo} from 'react';
+
+# useMemo 
+✅첫번째 파라미터에는 어떻게 연산할지 정의하는 함수를 넣어주면 되고 
+✅두번째 파라미터에는 deps 배열을 넣어주면 되는데,
+     이 배열 안에 넣은 내용이 바뀌면, 
+     우리가 등록한 함수를 호출해서 값을 연산해주고, 
+😋만약에 내용이 바뀌지 않았다면 이전에 연산한 값을 재사용하게 됩니다.
+
+# 사용 방법법
+# 클릭된 사용자만 갯수 셈
+function countActiveUsers(users){
+    console.log("활성 사용자 수를 세는중...");
+
+    
+    return users.filter(user => user.active).length;
+}
+
+export default function App() {
+
+    # 💢input 입력할떄마다 실행되는 단점!
+    const count = countActiveUsers(users);
+
+    # ✅useMemo를 사용하여 최적화
+    const count = useMemo(()=> countActiveUsers(users), 
+                                [users]);
+
+
+}
