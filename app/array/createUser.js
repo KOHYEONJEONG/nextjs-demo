@@ -24,4 +24,5 @@ function CreateUser({ username, email, onChange, onCreate}){
 
 }
 
+//부모 컴포넌트인 App에서 사용
 export default CreateUser;

@@ -4,6 +4,7 @@ import React, {useRef, useState} from "react";
 import UserList from "./print";
 import CreateUser from "./createUser";
 
+//부모 컴포넌트인 App
 function App() {
 
     //초기값

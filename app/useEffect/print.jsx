@@ -4,7 +4,7 @@ function User({ user, onRemove ,onToggle}) {
 
   //첫번째 파라미터에는 함수, 
   // 두번째부터는 의존값이 들어있는 배열 deps를 넣음.
-  //    [] : 컴포넌트가 처음 나타날때에만 useEffect 에 등록한 함수가 호출
+  // [] : 컴포넌트가 처음 나타날때에만 useEffect 에 등록한 함수가 호출
   useEffect(()=>{
     console.log('user 값이 설정됨.')
     console.log(user);

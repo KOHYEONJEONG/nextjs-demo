@@ -1,0 +1,32 @@
+https://react.vlpt.us/basic/10-useRef.html
+
+✅컴포넌트에서 특정 DOM을 선택해야 할 때 ref를 사용해야 한다고 배웠습니다.
+ex1 : 특정 앨리먼트의 크기를 가져와야한다던지
+ex2 : 스크롤바 위치를 가져오거나 설정해야된다던지
+ex3: 포커스를 설정해줘야 한다던지 ...etc
+
+✅리액트는 ref라는 것을 사용함.
+
+✅함수형 컴포넌트에서 ref를 사용할 때에는 useRef라는 Hook 함수를 사용.
+🚩클래스형 컴포넌트는 React.createRef 사용.(이제는 별로 중요하지 않은 클래스형 컴포넌트..)
+ 
+   const nameInput = useRef();
+
+   const onReset = () => {
+    ...
+    nameInput.current.focus();
+  };
+
+   <input
+        name="name"
+        placeholder="이름"
+        onChange={onChange}
+        value={name}
+        ref={nameInput}
+      />
+
+  <button onClick={onReset}>초기화</button>      
+
+  이제 브라우저에서 인풋에 값을 입력한 다음에 초기화를 눌러보세요.
+  이름 input 에 포커스가 잘 잡히나요?(useRef가 없을때 버튼에 포커스가 잡혔음)
+
