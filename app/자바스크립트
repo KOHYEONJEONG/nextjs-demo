@@ -1,0 +1,12 @@
+# !변수명 
+https://learnjs.vlpt.us/useful/02-truthy-and-falsy.html
+undefined 와 null 은 Falsy 한 값. Falsy 한 값 앞에 느낌표를 붙여주면 true 로전환하여 단축됨.
+
+function print(person) {
+  if (!person) {
+    console.log('person이 없네요');
+    return;
+  }
+  console.log(person.name);
+}
+
