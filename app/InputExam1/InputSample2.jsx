@@ -6,6 +6,7 @@ function InputSample() {
 
 
     const nameInput = useRef(null);// INPUT 박스 포커스하기 위해서 생성
+                                   //useRef() 를 사용하여 Ref 객체를 만들고, 이 객체를 우리가 선택하고 싶은 DOM 에 ref 값으로 설정
 
     const [inputs, setInputs] = useState({
         name : '',
@@ -23,7 +24,7 @@ function InputSample() {
         //그렇다면? 새로운 객체를 만들어서 새로운 객체에 변화를 주고, 이를 상태로 사용
         setInputs({
             ...inputs, //(스프레드 문법 : 불변성을 지킨다)기존의 input 객체를 복사한 뒤
-            [name]:value //name 키를 가진 값을 value로 설정정
+            [name]:value //name 키를 가진 값을 value로 설정
         });
 
         
@@ -43,7 +44,7 @@ function InputSample() {
   // http://localhost:3000/InputExam1
   return (
     <div>
-                                                                                  {/*포커스 잡히기 위해 설정 ->  ref={nameInput} */}
+                                                                            {/*포커스 잡히기 위해 설정 ->  ref={nameInput} */}
       <input name="name" placeholder="이름" onChange={onChange} value={name}  ref={nameInput}/>  
       <input name="nickname" placeholder="닉네임" onChange={onChange} value={nickname}/>
       <button onClick={onReset}>초기화</button>

@@ -1,9 +1,10 @@
+"use client"
 import React, { useRef, useState, useMemo, useCallback } from 'react';
-import UserList from './UserList';
+import UserList from './print';
 import CreateUser from './CreateUser';
 
 function countActiveUsers(users) {
-  console.log('활성 사용자 수를 세는중...');
+  // console.log('활성 사용자 수를 세는중...');
   return users.filter(user => user.active).length;
 }
 
@@ -12,8 +13,17 @@ function App() {
     username: '',
     email: ''
   });
-
-  
+  const { username, email } = inputs;
+  const onChange = useCallback(
+    e => {
+      const { name, value } = e.target;
+      setInputs({
+        ...inputs,
+        [name]: value
+      });
+    },
+    [inputs]
+  );
   const [users, setUsers] = useState([
     {
       id: 1,
@@ -35,23 +45,8 @@ function App() {
     }
   ]);
 
-  const { username, email } = inputs;
   const nextId = useRef(4);
-
-  //useCallback
-  const onChange = useCallback(
-
-    e => {
-      const { name, value } = e.target;
-      setInputs({
-        ...inputs,
-        [name]: value
-      });
-    },
-    [inputs]//함수 안에서 사용하는 상태 혹은 props 가 있다면 꼭, deps 배열안에 포함
-  );
-
-  const onCreate = useCallback(() => {//useCallback
+  const onCreate = useCallback(() => {
     const user = {
       id: nextId.current,
       username,
@@ -64,32 +59,27 @@ function App() {
       email: ''
     });
     nextId.current += 1;
-  }, [users, username, email]);//함수 안에서 사용하는 상태 혹은 props 가 있다면 꼭, deps 배열안에 포함
+  }, [users, username, email]);
 
-  const onRemove = useCallback(//useCallback
+  const onRemove = useCallback(
     id => {
       // user.id 가 파라미터로 일치하지 않는 원소만 추출해서 새로운 배열을 만듬
       // = user.id 가 id 인 것을 제거함
       setUsers(users.filter(user => user.id !== id));
     },
-    [users] //함수 안에서 사용하는 상태 혹은 props 가 있다면 꼭, deps 배열안에 포함
+    [users]
   );
-
-  const onToggle = useCallback(//useCallback
+  const onToggle = useCallback(
     id => {
       setUsers(
         users.map(user =>
-          user.id === id 
-           ? { ...user, active: !user.active }
-           : user
+          user.id === id ? { ...user, active: !user.active } : user
         )
       );
     },
-    [users]//함수 안에서 사용하는 상태 혹은 props 가 있다면 꼭, deps 배열안에 포함
+    [users]
   );
-
   const count = useMemo(() => countActiveUsers(users), [users]);
-  
   return (
     <>
       <CreateUser
