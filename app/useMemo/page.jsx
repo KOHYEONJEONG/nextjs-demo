@@ -88,6 +88,8 @@ export default function App() {
     // const count = countActiveUsers(users);
 
     //useMemo를 사용하여 최적화(users가 변화되지 않으면 비교 후 실행안됨.)
+    //첫번째 파라미터에는 어떻게 연산할지 정의하는 함수를 넣어주면 되고 두번째 파라미터에는 deps 배열을 넣어주면 되는데.
+    // 이 배열 안에 넣은 내용이 바뀌면 등록한 함수를 호출해서 연산하며, 만약에 내용이 바뀌지 않으면 이전에 연산한 값을 재사용하게됨.
     const count = useMemo(()=> countActiveUsers(users), [users]);
 
     return(
